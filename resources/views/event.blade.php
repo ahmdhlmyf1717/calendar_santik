@@ -128,7 +128,7 @@
                     width: 100%;
                     height: 100%;
                     overflow: auto;
-                    z-index: 1050;
+                    z-index: 1100;
                 }
             </style>
 
