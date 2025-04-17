@@ -20,16 +20,18 @@
                 {{ $slot }}
             </div>
 
-            <div class="modal-footer justify-content-between">
+            <div class="modal-footer d-flex justify-content-between">
                 @if ($data->id)
                     <button type="button" class="btn btn-danger"
                         onclick="showDeleteConfirmation(this, '{{ route('events.destroy', $data->id) }}')">
                         <i class="bi bi-trash me-1"></i> Delete
                     </button>
+                @else
+                    <div></div> <!-- Placeholder kosong untuk menjaga layout -->
                 @endif
 
-                <div>
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <div class="d-flex">
+                    <button type="button" class="btn btn-secondary me-2" data-bs-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-primary">Save changes</button>
                 </div>
             </div>
