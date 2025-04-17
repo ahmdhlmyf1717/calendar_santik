@@ -33,37 +33,21 @@
     <div class="container-fluid">
         <div class="row">
             <div class="mt-2 brand-logo d-flex align-items-center justify-content-between">
-
-                {{-- ini untuk yg atas samping logo --}}
-                <div class="navbar-collapse justify-content-end px-0 mt-3" id="navbarNav">
-                    <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
-                        <li class="nav-item dropdown">
-
-                            <a href="#" class="text-nowrap logo-img">
-                                <img src="{{ asset('assets/images/santik-logo.png') }}" width="70" alt="" />
-                            </a>
-
-                        </li>
-                    </ul>
-                </div>
-                {{-- <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
-                    <i class="ti ti-x fs-8"></i>
-                </div> --}}
             </div>
 
             <nav id="sidebarMenu"
                 class="sidebar-nav scroll-sidebar col-md-3 col-lg-2 d-md-block bg-dark sidebar collapse shadow-sm"
-                data-simplebar="">
+                data-simplebar="" style="min-width: 200px; max-width: 400px; resize: horizontal; overflow: auto;">
                 <div class="">
-                    <a href="#" class="mt-2 text-nowrap logo-img">
-                        <img src="{{ asset('assets/images/kominfo-jbg.png') }}" width="150" alt=""
-                            style="margin-left : 20px" />
+                    <a href="#" class="text-nowrap logo-img"
+                        style="margin-top: 30px; display: inline-block; margin-left: 10px;">
+                        <img src="{{ asset('assets/images/kominfo-jbg.png') }}" width="150" alt="" />
                     </a>
+
                     <ul class="nav flex-column">
                         <li class="nav-small-cap">
                             <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
                             <h3>
-
                                 <span class="hide-menu">Features</span>
                             </h3>
                         </li>
@@ -75,9 +59,8 @@
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link active text-white d-flex align-items-center"
-                                href="{{ route('events.history') }}" aria-expanded="false">
-
+                            <a class="sidebar-link active text-white d-flex align-items-center" href="#"
+                                aria-expanded="false">
                                 <span><i class="bi bi-calendar-event me-3"></i></span>
                                 <span class="hide-menu">Event History</span>
                             </a>
@@ -93,12 +76,40 @@
                             </form>
                         </li>
                     </ul>
+                </div>
 
-                </div>
-                <div id="resizer"
-                    style="width: 5px; cursor: ew-resize; position: absolute; right: 0; top: 0; bottom: 0; background-color: rgba(255, 255, 255, 0.2);">
-                </div>
+
             </nav>
+
+            <style>
+                .resize-handle {
+                    width: 30px;
+                    height: 100%;
+                    background: transparent;
+                    position: absolute;
+                    right: 0;
+                    top: 0;
+                    cursor: ew-resize;
+                }
+
+                .sidebar-nav {
+                    width: 310px !important;
+                    min-width: 250px !important;
+                    max-width: 500px !important;
+                }
+
+                #sidebar h3 {
+                    color: white !important;
+                }
+
+                .sidebar-item .sidebar-link.active {
+                    color: white !important;
+                }
+            </style>
+
+
+
+
 
             <script>
                 const sidebar = document.getElementById('sidebarMenu');
@@ -207,102 +218,94 @@
                     /* Pastikan modal di atas semua elemen lainnya */
                 }
             </style>
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 mt-9 pt-0">
 
-            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-                <div class="container">
-                    <div
-                        class="d-flex justify-content-center flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                        <h1 class="h2 text-center fw-bold"
-                            style="border: 3px solid #5d87ff; padding: 15px 30px; border-radius: 15px; background-color: #f9f9f9; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); color: #333;">
-                            EVENT HISTORY
-                        </h1>
-                    </div>
 
-                    @if ($pastEvents->isEmpty())
-                        <p>Event tidak ditemukan.</p>
-                    @else
-                        <table class="table">
-                            <form method="GET" action="{{ route('events.search') }}" class="mb-3" id="searchForm">
-                                <div class="row">
-                                    <div class="col-md-4 mb-3">
-                                        <input type="text" name="search" id="searchInput"
-                                            value="{{ request('search') }}" class="form-control"
-                                            placeholder="Search by title">
-                                    </div>
+
+
+                @if ($pastEvents->isEmpty())
+                    <p>Event tidak ditemukan.</p>
+                @else
+                    <table class="table">
+                        <form method="GET" action="{{ route('events.search') }}" class="mb-3" id="searchForm">
+                            <div class="row">
+                                <div class="col-md-4 mb-3">
+                                    <input type="text" name="search" id="searchInput"
+                                        value="{{ request('search') }}" class="form-control"
+                                        placeholder="Search by title">
                                 </div>
-                            </form>
+                            </div>
+                        </form>
 
-                            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-                            <script>
-                                $(document).ready(function() {
-                                    // Ketika input berubah, kirimkan pencarian otomatis
-                                    $('#searchInput').on('input', function() {
-                                        var searchValue = $(this).val(); // Ambil nilai input pencarian
-                                        var url = '{{ route('events.search') }}'; // Ambil URL pencarian dari route
+                        <script>
+                            $(document).ready(function() {
+                                // Ketika input berubah, kirimkan pencarian otomatis
+                                $('#searchInput').on('input', function() {
+                                    var searchValue = $(this).val(); // Ambil nilai input pencarian
+                                    var url = '{{ route('events.search') }}'; // Ambil URL pencarian dari route
 
-                                        // Kirim permintaan GET secara otomatis
-                                        $.get(url, {
-                                            search: searchValue
-                                        }, function(data) {
-                                            // Gantikan konten tabel dengan data baru
-                                            $('table tbody').html(data);
-                                        });
+                                    // Kirim permintaan GET secara otomatis
+                                    $.get(url, {
+                                        search: searchValue
+                                    }, function(data) {
+                                        // Gantikan konten tabel dengan data baru
+                                        $('table tbody').html(data);
                                     });
                                 });
-                            </script>
+                            });
+                        </script>
 
 
-                            <thead>
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th class="title">Title</th>
+                                <th class="start">Start Date</th>
+                                <th class="end">End Date</th>
+                                <th>Reminder</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($pastEvents as $event)
                                 <tr>
-                                    <th>#</th>
-                                    <th class="title">Title</th>
-                                    <th class="start">Start Date</th>
-                                    <th class="end">End Date</th>
-                                    <th>Reminder</th>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $event->title }}</td>
+                                    <td>{{ $event->start_date }}</td>
+                                    <td>{{ $event->end_date }}</td>
+                                    <td>
+                                        <span class="reminder {{ $event->reminder ? 'reminder-yes' : 'reminder-no' }}">
+                                            {{ $event->reminder ? 'Yes' : 'No' }}
+                                        </span>
+                                    </td>
                                 </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($pastEvents as $event)
-                                    <tr>
-                                        <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $event->title }}</td>
-                                        <td>{{ $event->start_date }}</td>
-                                        <td>{{ $event->end_date }}</td>
-                                        <td>
-                                            <span
-                                                class="reminder {{ $event->reminder ? 'reminder-yes' : 'reminder-no' }}">
-                                                {{ $event->reminder ? 'Yes' : 'No' }}
-                                            </span>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
+                            @endforeach
+                        </tbody>
 
-                        </table>
-                        {{-- paginate --}}
-                        <div class="pagination-container d-flex justify-content-start">
-                            {{ $pastEvents->links('pagination::bootstrap-4') }}
-                        </div>
+                    </table>
+                    {{-- paginate --}}
+                    <div class="pagination-container d-flex justify-content-start">
+                        {{ $pastEvents->links('pagination::bootstrap-4') }}
+                    </div>
 
-                        <style>
-                            .pagination-container {
-                                position: relative;
-                                padding-bottom: 10px;
-                                text-align: left;
-                            }
-                        </style>
+                    <style>
+                        .pagination-container {
+                            position: relative;
+                            padding-bottom: 10px;
+                            text-align: left;
+                        }
+                    </style>
 
 
 
-                    @endif
+                @endif
 
 
 
             </main>
         </div>
 
-    </div>
     </div>
 
 
@@ -405,22 +408,27 @@
 
         /* untuk table */
         /* Table Styling */
+        /* Table Styling */
         .table {
             width: 100%;
             border-collapse: collapse;
             margin-bottom: 30px;
+            border: 2px solid #ddd;
+            /* Garis di sekeliling tabel */
         }
 
         .table th,
         .table td {
             padding: 15px;
             text-align: left;
-            border-bottom: 2px solid #e1e4e8;
+            border: 1px solid #ddd;
+            /* Garis antar sel */
             font-size: 1.1em;
             color: #333;
+            vertical-align: middle;
         }
 
-        /* Menjaga agar setiap kolom terlihat sejajar */
+        /* Header kolom */
         .table th {
             background-color: #3f51b5;
             color: #fff;
@@ -429,39 +437,25 @@
             font-weight: 600;
         }
 
-        /* Untuk memaksimalkan kolom data agar sejajar */
-        .table td {
-            padding: 15px;
-            text-align: left;
-            vertical-align: middle;
-            border-bottom: 1px solid #e1e4e8;
-            /* sedikit border agar rapi */
-        }
-
-        /* Menjaga kolom agar tetap rata di atas */
-        .table th,
-        .table td {
-            width: auto;
-        }
-
-        /* Spesifik untuk kolom dengan reminder */
+        /* Kolom reminder khusus */
         .table td .reminder {
             padding: 5px 10px;
             border-radius: 5px;
             font-size: 0.9em;
             text-align: center;
-            /* pastikan reminder di tengah */
         }
 
+        /* Reminder badge styling opsional */
         .reminder-yes {
-            background-color: #28a745;
-            color: #fff;
+            background-color: #4caf50;
+            color: white;
         }
 
         .reminder-no {
-            background-color: #dc3545;
-            color: #fff;
+            background-color: #f44336;
+            color: white;
         }
+
 
         /* Kolom judul dan data harus konsisten dalam ukuran */
         .table th,
@@ -610,10 +604,6 @@
     </style>
 
 </body>
-<footer class="footer mt-auto py-3 bg-dark text-white" style=" margin-top: 30px;">
-    <div class="container. text-center">
-        <span class="text-muted">© 2024 SANTIK - All Rights Reserved.</span>
-    </div>
-</footer>
+
 
 </html>

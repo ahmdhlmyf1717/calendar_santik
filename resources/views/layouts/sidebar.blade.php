@@ -1,10 +1,10 @@
 <nav id="sidebarMenu" class="sidebar-nav scroll-sidebar col-md-3 col-lg-2 d-md-block bg-dark sidebar collapse shadow-sm"
     data-simplebar="" style="min-width: 200px; max-width: 400px; resize: horizontal; overflow: auto;">
     <div class="">
-        <a href="#" class="mt-2 text-nowrap logo-img">
-            <img src="{{ asset('assets/images/kominfo-jbg.png') }}" width="150" alt=""
-                style="margin-left : 20px" />
+        <a href="#" class="text-nowrap logo-img" style="margin-top: 30px; display: inline-block; margin-left: 10px;">
+            <img src="{{ asset('assets/images/kominfo-jbg.png') }}" width="150" alt="" />
         </a>
+
         <ul class="nav flex-column">
             <li class="nav-small-cap">
                 <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
@@ -44,47 +44,31 @@
         </div>
     </div>
 
-    <script>
-        const sidebar = document.getElementById('sidebar');
-        const resizeHandle = document.querySelector('.resize-handle');
-
-        let isResizing = false;
-
-        resizeHandle.addEventListener('mousedown', (event) => {
-            isResizing = true;
-        });
-
-        document.addEventListener('mousemove', (event) => {
-            if (isResizing) {
-                const newWidth = event.clientX - sidebar.getBoundingClientRect().left;
-                if (newWidth > 100 && newWidth < 1000) { // Minimal and maximal width
-                    sidebar.style.width = `${newWidth}px`;
-                }
-            }
-        });
-
-        document.addEventListener('mouseup', () => {
-            isResizing = false;
-        });
-    </script>
 
 </nav>
 
 <style>
-    .resize-handle {
-        width: 10px;
-        /* Width of the resize handle */
-        height: 100%;
-        /* Full height */
-        background: transparent;
-        /* Make the handle transparent */
-        position: absolute;
-        /* Absolute position for resizing */
-        right: 0;
-        /* Align to the right */
-        top: 0;
-        /* Align to the top */
-        cursor: ew-resize;
-        /* Cursor indicates resizing */
+    .sidebar-nav {
+        width: 310px !important;
+        min-width: 250px !important;
+        max-width: 500px !important;
+        scrollbar-width: none;
+        /* Untuk Firefox */
+        -ms-overflow-style: none;
+        /* Untuk IE/Edge */
+        overflow: auto;
+    }
+
+    .sidebar-nav::-webkit-scrollbar {
+        display: none;
+        /* Untuk Chrome, Safari, Opera */
+    }
+
+    #sidebar h3 {
+        color: white !important;
+    }
+
+    .sidebar-item .sidebar-link.active {
+        color: white !important;
     }
 </style>

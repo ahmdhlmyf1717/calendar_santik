@@ -26,124 +26,108 @@
 
 <body>
 
-    <div class="container-fluid">
-        <div class="row">
-            <div class="mt-2 brand-logo d-flex align-items-center justify-content-between">
-                <a href="#" class="mt-2 text-nowrap logo-img">
-                    <img src="{{ asset('assets/images/kominfo-jbg.png') }}" width="150" alt="" />
-                </a>
-                {{-- ini untuk yg atas samping logo --}}
-                <div class="navbar-collapse justify-content-end px-0 mt-3" id="navbarNav">
-                    <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
-                        <li class="nav-item dropdown">
-                            <a href="#" class="text-nowrap logo-img">
-                                <img src="{{ asset('assets/images/santik-logo.png') }}" width="70" alt="" />
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+    <div class="row">
+        <div class="mt-2 brand-logo d-flex align-items-center justify-content-between">
+            <a href="#" class="mt-2 text-nowrap logo-img">
+                <img src="{{ asset('assets/images/kominfo-jbg.png') }}" width="150" alt="" />
+            </a>
+            {{-- ini untuk yg atas samping logo --}}
 
-            @include('layouts.sidebar')
-
-            <style>
-                /* Sidebar container with flexbox */
-                #sidebar-container {
-                    display: flex;
-                    flex-direction: column;
-                    /* Flex-direction membuat elemen di dalam mengikuti alur vertikal */
-                    width: 100%;
-                }
-
-                /* Gaya untuk sidebar */
-                #sidebar {
-                    background: linear-gradient(135deg, rgba(0, 123, 255, 0.9), rgba(0, 75, 160, 0.9));
-                    padding: 15px;
-                    max-width: 100%;
-                    /* Buat sidebar lebar fleksibel */
-                    overflow: auto;
-                    border-radius: 7px;
-                    display: flex;
-                    flex-direction: column;
-                    /* Mengatur konten di dalam sidebar */
-                }
-
-                /* Gaya untuk event list */
-                #event-list {
-                    list-style-type: none;
-                    padding: 0;
-                    margin: 0;
-                    width: 100%;
-                    /* Buat event list menyesuaikan lebar */
-                }
-
-                /* Gaya untuk item di event list */
-                #event-list li {
-                    padding: 10px;
-                    margin: 5px 0;
-                    background-color: #ffffff;
-                    border-radius: 4px;
-                    cursor: pointer;
-                    transition: background-color 0.3s ease;
-                    white-space: normal;
-                    word-wrap: break-word;
-                    border: 1px solid #ced4da;
-                    width: 100%;
-                    /* Buat item mengikuti lebar parent */
-                }
-
-                /* Efek hover untuk item di event list */
-                #event-list li:hover {
-                    background-color: #ffffff;
-                }
-
-                /* Pastikan simbol berada di dalam item yang bisa melebarkan */
-                #event-list li:before {
-                    content: '';
-                    display: block;
-                    width: 8px;
-                    height: 8px;
-                    background-color: #0d6efd;
-                    border-radius: 50%;
-                    position: absolute;
-                    left: -20px;
-                    top: 50%;
-                    transform: translateY(-50%);
-                }
-
-                /* H3 Title Styling */
-                h3 {
-                    font-weight: bold;
-                    color: #343a40;
-                    margin-bottom: 15px;
-                    width: 100%;
-                    /* Mengisi seluruh lebar */
-                }
-
-                /* Modal Styling */
-                .modal {
-                    position: fixed;
-                    top: 0;
-                    left: 0;
-                    width: 100%;
-                    height: 100%;
-                    overflow: auto;
-                    z-index: 1100;
-                }
-            </style>
-
-            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-                <div
-                    class="d-flex justify-content-center flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                    <h1 class="h2 text-center fw-bold"
-                        style="border: 3px solid #5d87ff; padding: 15px 30px; border-radius: 15px; background-color: #f9f9f9; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); color: #333;">
-                        CALENDAR
-                    </h1>
-                </div>
-
-                <div id='calendar'></div>
-            </main>
         </div>
+
+        @include('layouts.sidebar')
+
+        <style>
+            /* Sidebar container with flexbox */
+            #sidebar-container {
+                display: flex;
+                flex-direction: column;
+                /* Flex-direction membuat elemen di dalam mengikuti alur vertikal */
+                width: 100%;
+            }
+
+            /* Gaya untuk sidebar */
+            #sidebar {
+                background: linear-gradient(135deg, rgba(0, 123, 255, 0.9), rgba(0, 75, 160, 0.9));
+                padding: 15px;
+                max-width: 100%;
+                /* Buat sidebar lebar fleksibel */
+                overflow: auto;
+                border-radius: 7px;
+                display: flex;
+                flex-direction: column;
+                /* Mengatur konten di dalam sidebar */
+            }
+
+            /* Gaya untuk event list */
+            #event-list {
+                list-style-type: none;
+                padding: 0;
+                margin: 0;
+                width: 100%;
+                /* Buat event list menyesuaikan lebar */
+            }
+
+            /* Gaya untuk item di event list */
+            #event-list li {
+                padding: 10px;
+                margin: 5px 0;
+                background-color: #ffffff;
+                border-radius: 4px;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+                white-space: normal;
+                word-wrap: break-word;
+                border: 1px solid #ced4da;
+                width: 100%;
+                /* Buat item mengikuti lebar parent */
+            }
+
+            /* Efek hover untuk item di event list */
+            #event-list li:hover {
+                background-color: #ffffff;
+            }
+
+            /* Pastikan simbol berada di dalam item yang bisa melebarkan */
+            #event-list li:before {
+                content: '';
+                display: block;
+                width: 8px;
+                height: 8px;
+                background-color: #0d6efd;
+                border-radius: 50%;
+                position: absolute;
+                left: -20px;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+
+            /* H3 Title Styling */
+            h3 {
+                font-weight: bold;
+                color: #343a40;
+                margin-bottom: 15px;
+                width: 100%;
+                /* Mengisi seluruh lebar */
+            }
+
+            /* Modal Styling */
+            .modal {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                overflow: auto;
+                z-index: 1100;
+            }
+        </style>
+
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+
+
+            <div id='calendar'></div>
+        </main>
     </div>
 
     <div id="modal-action" class="modal" tabindex="-1">
@@ -177,6 +161,7 @@
                 themeSystem: 'bootstrap5',
                 events: `{{ route('events.list') }}`,
                 editable: true,
+
 
                 eventsSet: function() {
                     displayTodayEvents(); // Panggil fungsi setelah events selesai di-load

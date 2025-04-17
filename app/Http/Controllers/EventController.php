@@ -97,9 +97,15 @@ class EventController extends Controller
     public function destroy(Event $event)
     {
         $event->delete();
+
         return response()->json([
             'status' => 'success',
-            'message' => 'Delete data successfully'
+            'message' => 'Data berhasil dihapus',
+            'swal' => [
+                'icon' => 'success',
+                'title' => 'Terhapus!',
+                'text' => 'Data event telah dihapus.'
+            ]
         ]);
     }
 
